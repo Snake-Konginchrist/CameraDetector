@@ -3,15 +3,13 @@ from PIL import Image, ImageTk
 import tkinter as tk
 
 
-def open_camera(camera_info):
+def open_camera(camera_index):
     """
     打开指定索引的摄像头，并在新窗口中显示实时视频流。
     """
-    camera_index = camera_info[0]  # 提取摄像头索引作为整数
-
     # cap = cv2.VideoCapture(camera_index)
-    cap = cv2.VideoCapture(camera_index, cv2.CAP_DSHOW)  # 创建视频捕获对象
-    # cap = cv2.VideoCapture(camera_index, cv2.CAP_MSMF)
+    # cap = cv2.VideoCapture(camera_index, cv2.CAP_DSHOW)  # 创建视频捕获对象
+    cap = cv2.VideoCapture(camera_index, cv2.CAP_MSMF)
 
     camera_window = tk.Toplevel()  # 创建新的顶级窗口
     camera_window.title(f"摄像头 {camera_index}")  # 设置窗口标题
