@@ -17,13 +17,17 @@ def open_camera(camera_index):
     camera_label = tk.Label(camera_window)  # 创建用于显示视频帧的标签
     camera_label.pack()
 
+    desired_width = 480
+    desired_height = 270
+
     def show_frame():
         """
         捕获摄像头的当前帧，并在标签上显示。
         """
         ret, frame = cap.read()  # 读取一帧视频
         if ret:
-            frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)  # 将BGR颜色转换为RGB
+            resized_frame = cv2.resize(frame, (desired_width, desired_height))
+            frame = cv2.cvtColor(resized_frame, cv2.COLOR_BGR2RGB)  # 将BGR颜色转换为RGB
             img = Image.fromarray(frame)  # 将帧转换为Image对象
             imgtk = ImageTk.PhotoImage(image=img)  # 将Image对象转换为PhotoImage对象
             camera_label.imgtk = imgtk  # 避免垃圾回收
